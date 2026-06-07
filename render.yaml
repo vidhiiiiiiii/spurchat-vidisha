@@ -1,0 +1,23 @@
+# Render Blueprint for the backend. You can either use this (New → Blueprint and
+# point it at this repo) or set the same values manually in the Render dashboard
+# (see the "Deploying" section in README.md).
+services:
+  - type: web
+    name: spur-chat-backend
+    runtime: node
+    rootDir: backend
+    plan: free
+    # --include=dev forces devDependencies (typescript, prisma CLI, @types) to install
+    # even though Render sets NODE_ENV=production, which would otherwise skip them and
+    # break the build.
+    buildCommand: npm install --include=dev && npx prisma generate && npx prisma migrate deploy && npm run build
+    startCommand: npm start
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false # set this yourself in the dashboard — never commit the key
+      - key: GEMINI_MODEL
+        value: gemini-2.5-flash
+      - key: DATABASE_URL
+        value: file:./dev.db
+      - key: CORS_ORIGIN
+        sync: false # set this to your deployed frontend URL after the frontend is live
