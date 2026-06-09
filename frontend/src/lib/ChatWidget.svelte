@@ -198,6 +198,7 @@
     border: 1px solid var(--border);
     box-shadow: 0 24px 60px rgba(60, 36, 25, 0.22), 0 0 0 1px rgba(60, 36, 25, 0.04);
     overflow: hidden;
+    font-family: "Caveat", "Segoe Script", cursive;
   }
 
   .chat-header {
@@ -205,8 +206,8 @@
     align-items: center;
     gap: 12px;
     padding: 18px 20px;
-    background: linear-gradient(135deg, #3c2419 0%, #2a1812 100%);
-    color: #f3e4cf;
+    background: linear-gradient(135deg, #3d2415 0%, #2d2012 100%);
+    color: #f5dfa0;
     border-bottom: 2px solid var(--gold);
     z-index: 10;
   }
@@ -215,28 +216,27 @@
     min-width: 0;
   }
   .chat-header h1 {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 1.15rem;
+    font-size: 1.45rem;
     margin: 0;
     font-weight: 700;
-    color: #f5e7d0;
-    letter-spacing: 0.2px;
+    color: #f5dfa0;
+    line-height: 1.1;
   }
   .new-chat {
     flex-shrink: 0;
-    background: rgba(201, 162, 39, 0.12);
-    color: #e3c77d;
-    border: 1px solid rgba(201, 162, 39, 0.55);
-    border-radius: 10px;
-    padding: 6px 12px;
-    font-size: 0.8rem;
+    background: rgba(212, 160, 74, 0.12);
+    color: #f5dfa0;
+    border: 1px solid rgba(212, 160, 74, 0.6);
+    border-radius: 8px;
+    padding: 4px 12px;
+    font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
     transition: background 0.15s ease;
     font-family: inherit;
   }
   .new-chat:hover:not(:disabled) {
-    background: rgba(201, 162, 39, 0.25);
+    background: rgba(212, 160, 74, 0.25);
   }
   .new-chat:disabled {
     opacity: 0.4;
@@ -244,9 +244,8 @@
   }
   .chat-header .status {
     margin: 2px 0 0;
-    font-size: 0.8rem;
-    font-style: italic;
-    color: #d8c3a8;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.55);
   }
   .avatar {
     width: 40px;
@@ -254,20 +253,19 @@
     border-radius: 50%;
     background: var(--clay);
     border: 2px solid var(--gold);
-    color: #3c2419;
+    color: #3d2415;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: Georgia, serif;
     font-weight: 700;
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     flex-shrink: 0;
   }
 
   .messages {
     flex: 1;
     overflow-y: auto;
-    padding: 16px;
+    padding: 14px 14px 6px;
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -292,20 +290,20 @@
     padding-left: 42px;
   }
   .chip {
-    background: var(--surface);
-    border: 1px solid #d9b98f;
-    color: #8a5a2b;
-    border-radius: 18px;
-    padding: 7px 14px;
-    font-size: 0.8rem;
+    background: transparent;
+    border: 1px solid #d4a04a;
+    color: #7a5820;
+    border-radius: 5px;
+    padding: 3px 10px;
+    font-size: 1rem;
     cursor: pointer;
     transition: all 0.15s ease;
     font-family: inherit;
   }
   .chip:hover:not(:disabled) {
-    background: #8a5a2b;
-    border-color: #8a5a2b;
-    color: #fbf5ec;
+    background: #d4a04a;
+    border-color: #d4a04a;
+    color: #fdf6ec;
   }
   .chip:disabled {
     opacity: 0.5;
@@ -314,10 +312,9 @@
   .free-tier-note {
     margin: 8px 0 0;
     padding-left: 42px;
-    font-size: 0.75rem;
+    font-size: 0.95rem;
     line-height: 1.4;
     color: var(--muted);
-    font-style: italic;
   }
 
   .message-row {
@@ -332,41 +329,39 @@
     justify-content: flex-start;
   }
   .msg-avatar {
-    width: 30px;
-    height: 30px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
     background: var(--clay);
     border: 1.5px solid var(--gold);
-    color: #3c2419;
+    color: #3d2415;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: Georgia, serif;
     font-weight: 700;
-    font-size: 0.85rem;
+    font-size: 1.05rem;
     flex-shrink: 0;
   }
 
   .bubble {
     max-width: 74%;
-    padding: 11px 15px;
-    border-radius: 16px;
-    line-height: 1.45;
-    font-size: 0.92rem;
+    padding: 9px 13px;
+    border-radius: 14px;
+    line-height: 1.4;
+    font-size: 1.1rem;
     white-space: pre-wrap;
     word-break: break-word;
   }
   .bubble.user {
-    background: var(--espresso);
-    color: #f3e4cf;
-    border-bottom-right-radius: 4px;
+    background: #3d2415;
+    color: #f5dfa0;
+    border: 1px solid #2d2012;
     box-shadow: 0 4px 12px rgba(60, 36, 25, 0.25);
   }
   .bubble.ai {
-    background: #fffaf3;
-    color: var(--text);
-    border: 1px solid #ecdcc8;
-    border-bottom-left-radius: 4px;
+    background: #ffffff;
+    color: #2d2012;
+    border: 1px solid #d6cabd;
     box-shadow: 0 4px 12px rgba(60, 36, 25, 0.05);
   }
 
@@ -395,13 +390,13 @@
     align-items: center;
     justify-content: space-between;
     gap: 10px;
-    margin: 0 12px;
-    padding: 10px 14px;
-    background: #f9e6e2;
-    color: #9a3b2f;
-    border: 1px solid #eccabf;
-    border-radius: 12px;
-    font-size: 0.85rem;
+    margin: 0 12px 6px;
+    padding: 7px 10px;
+    background: #fdecea;
+    color: #b71c1c;
+    border: 1px solid #f5cfcb;
+    border-radius: 8px;
+    font-size: 1rem;
   }
   .error-banner button {
     background: none;
@@ -424,14 +419,14 @@
   .composer textarea {
     flex: 1;
     resize: none;
-    border: 1px solid #d9b98f;
+    border: 1px solid #d4a04a;
     border-radius: 14px;
-    padding: 11px 14px;
+    padding: 10px 14px;
     font: inherit;
-    font-size: 0.92rem;
+    font-size: 1.1rem;
     max-height: 120px;
-    background: #fffaf3;
-    color: var(--text);
+    background: #ffffff;
+    color: #2d2012;
   }
   .composer textarea::placeholder {
     color: #b09a86;
@@ -444,13 +439,13 @@
     opacity: 0.6;
   }
   .composer button[type="submit"] {
-    background: var(--espresso);
-    color: #f3e4cf;
+    background: #3d2415;
+    color: #f5dfa0;
     border: none;
     border-radius: 14px;
-    padding: 11px 20px;
-    font-weight: 600;
-    font-size: 0.9rem;
+    padding: 10px 22px;
+    font-weight: 700;
+    font-size: 1.1rem;
     cursor: pointer;
     transition: all 0.2s ease;
     box-shadow: 0 2px 8px rgba(60, 36, 25, 0.25);
@@ -471,18 +466,18 @@
 
   .watermark {
     text-align: center;
-    font-size: 0.75rem;
+    font-size: 0.95rem;
     color: var(--muted);
-    padding: 8px 12px 12px;
+    padding: 6px 12px 10px;
     background: var(--surface);
   }
   .watermark strong {
     color: var(--brand);
-    font-weight: 600;
+    font-weight: 700;
   }
   .counter {
     align-self: center;
-    font-size: 0.75rem;
+    font-size: 0.95rem;
     color: var(--muted);
   }
   .counter.over {
