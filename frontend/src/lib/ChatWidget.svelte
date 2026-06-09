@@ -124,8 +124,10 @@
       <p class="hint">Loading conversation…</p>
     {:else if messages.length === 0}
       <div class="empty-state">
-        <p>👋 Hi! I'm Vibha, your support agent.</p>
-        <p>Ask me about shipping, returns, support hours, or anything else about your order.</p>
+        <div class="message-row ai">
+          <div class="msg-avatar" aria-hidden="true">V</div>
+          <div class="bubble ai">Namaste! 🙏 I'm Vibha. How can I help you today?</div>
+        </div>
         <div class="chips">
           {#each ["What's your return policy?", "Do you ship to USA?", "What are your support hours?", "What payment methods do you accept?"] as chip}
             <button type="button" class="chip" disabled={sending} on:click={() => { draft = chip; handleSend(); }}>
@@ -133,17 +135,22 @@
             </button>
           {/each}
         </div>
+        <p class="free-tier-note">ℹ️ Running on a free LLM tier — replies may occasionally be slow or briefly rate-limited.</p>
       </div>
     {/if}
 
     {#each messages as message (message.id)}
       <div class="message-row {message.sender}">
+        {#if message.sender === "ai"}
+          <div class="msg-avatar" aria-hidden="true">V</div>
+        {/if}
         <div class="bubble {message.sender}">{message.text}</div>
       </div>
     {/each}
 
     {#if sending}
       <div class="message-row ai">
+        <div class="msg-avatar" aria-hidden="true">V</div>
         <div class="bubble ai typing" aria-live="polite" aria-label="Agent is typing">
           <span></span><span></span><span></span>
         </div>
@@ -187,8 +194,9 @@
     width: min(420px, 100vw);
     height: min(640px, 100vh);
     background: var(--surface);
-    border-radius: 20px;
-    box-shadow: 0 20px 50px rgba(109, 40, 217, 0.15), 0 0 0 1px rgba(109, 40, 217, 0.05);
+    border-radius: 22px;
+    border: 1px solid var(--border);
+    box-shadow: 0 24px 60px rgba(60, 36, 25, 0.22), 0 0 0 1px rgba(60, 36, 25, 0.04);
     overflow: hidden;
   }
 
@@ -197,9 +205,9 @@
     align-items: center;
     gap: 12px;
     padding: 18px 20px;
-    background: linear-gradient(135deg, #6d28d9 0%, #9333ea 100%);
-    color: white;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    background: linear-gradient(135deg, #3c2419 0%, #2a1812 100%);
+    color: #f3e4cf;
+    border-bottom: 2px solid var(--gold);
     z-index: 10;
   }
   .header-text {
@@ -207,16 +215,19 @@
     min-width: 0;
   }
   .chat-header h1 {
-    font-size: 1.05rem;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.15rem;
     margin: 0;
-    font-weight: 600;
+    font-weight: 700;
+    color: #f5e7d0;
+    letter-spacing: 0.2px;
   }
   .new-chat {
     flex-shrink: 0;
-    background: rgba(255, 255, 255, 0.18);
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 8px;
+    background: rgba(201, 162, 39, 0.12);
+    color: #e3c77d;
+    border: 1px solid rgba(201, 162, 39, 0.55);
+    border-radius: 10px;
     padding: 6px 12px;
     font-size: 0.8rem;
     font-weight: 600;
@@ -225,7 +236,7 @@
     font-family: inherit;
   }
   .new-chat:hover:not(:disabled) {
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(201, 162, 39, 0.25);
   }
   .new-chat:disabled {
     opacity: 0.4;
@@ -234,17 +245,22 @@
   .chat-header .status {
     margin: 2px 0 0;
     font-size: 0.8rem;
-    opacity: 0.85;
+    font-style: italic;
+    color: #d8c3a8;
   }
   .avatar {
-    width: 38px;
-    height: 38px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.18);
+    background: var(--clay);
+    border: 2px solid var(--gold);
+    color: #3c2419;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: Georgia, serif;
     font-weight: 700;
+    font-size: 1.1rem;
     flex-shrink: 0;
   }
 
@@ -254,7 +270,7 @@
     padding: 16px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
     background: var(--bg);
   }
 
@@ -265,40 +281,49 @@
   }
 
   .empty-state {
-    margin: auto;
-    text-align: center;
-    color: var(--muted);
-    max-width: 280px;
-    line-height: 1.5;
-  }
-  .empty-state p {
-    margin: 4px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
   }
   .chips {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
-    justify-content: center;
-    margin-top: 16px;
+    padding-left: 42px;
   }
   .chip {
-    background: none;
-    border: 1px solid var(--brand);
-    color: var(--brand);
-    border-radius: 20px;
-    padding: 6px 14px;
+    background: var(--surface);
+    border: 1px solid #d9b98f;
+    color: #8a5a2b;
+    border-radius: 18px;
+    padding: 7px 14px;
     font-size: 0.8rem;
     cursor: pointer;
     transition: all 0.15s ease;
     font-family: inherit;
   }
-  .chip:hover {
-    background: var(--brand);
-    color: white;
+  .chip:hover:not(:disabled) {
+    background: #8a5a2b;
+    border-color: #8a5a2b;
+    color: #fbf5ec;
+  }
+  .chip:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  .free-tier-note {
+    margin: 8px 0 0;
+    padding-left: 42px;
+    font-size: 0.75rem;
+    line-height: 1.4;
+    color: var(--muted);
+    font-style: italic;
   }
 
   .message-row {
     display: flex;
+    align-items: flex-end;
+    gap: 8px;
   }
   .message-row.user {
     justify-content: flex-end;
@@ -306,10 +331,25 @@
   .message-row.ai {
     justify-content: flex-start;
   }
+  .msg-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--clay);
+    border: 1.5px solid var(--gold);
+    color: #3c2419;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Georgia, serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+  }
 
   .bubble {
-    max-width: 78%;
-    padding: 10px 14px;
+    max-width: 74%;
+    padding: 11px 15px;
     border-radius: 16px;
     line-height: 1.45;
     font-size: 0.92rem;
@@ -317,17 +357,17 @@
     word-break: break-word;
   }
   .bubble.user {
-    background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
-    color: white;
+    background: var(--espresso);
+    color: #f3e4cf;
     border-bottom-right-radius: 4px;
-    box-shadow: 0 4px 12px rgba(109, 40, 217, 0.2);
+    box-shadow: 0 4px 12px rgba(60, 36, 25, 0.25);
   }
   .bubble.ai {
-    background: #ffffff;
+    background: #fffaf3;
     color: var(--text);
-    border: 1px solid #f1f1f4;
+    border: 1px solid #ecdcc8;
     border-bottom-left-radius: 4px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    box-shadow: 0 4px 12px rgba(60, 36, 25, 0.05);
   }
 
   .bubble.typing {
@@ -340,7 +380,7 @@
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: var(--muted);
+    background: var(--brand);
     animation: bounce 1.2s infinite ease-in-out;
   }
   .bubble.typing span:nth-child(2) { animation-delay: 0.15s; }
@@ -355,10 +395,12 @@
     align-items: center;
     justify-content: space-between;
     gap: 10px;
+    margin: 0 12px;
     padding: 10px 14px;
-    background: #fef2f2;
-    color: #b91c1c;
-    border-top: 1px solid #fecaca;
+    background: #f9e6e2;
+    color: #9a3b2f;
+    border: 1px solid #eccabf;
+    border-radius: 12px;
     font-size: 0.85rem;
   }
   .error-banner button {
@@ -382,14 +424,17 @@
   .composer textarea {
     flex: 1;
     resize: none;
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 10px 12px;
+    border: 1px solid #d9b98f;
+    border-radius: 14px;
+    padding: 11px 14px;
     font: inherit;
     font-size: 0.92rem;
     max-height: 120px;
-    background: var(--bg);
+    background: #fffaf3;
     color: var(--text);
+  }
+  .composer textarea::placeholder {
+    color: #b09a86;
   }
   .composer textarea:focus {
     outline: 2px solid var(--brand);
@@ -399,20 +444,21 @@
     opacity: 0.6;
   }
   .composer button[type="submit"] {
-    background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
-    color: white;
+    background: var(--espresso);
+    color: #f3e4cf;
     border: none;
-    border-radius: 12px;
-    padding: 10px 18px;
+    border-radius: 14px;
+    padding: 11px 20px;
     font-weight: 600;
     font-size: 0.9rem;
     cursor: pointer;
     transition: all 0.2s ease;
-    box-shadow: 0 2px 8px rgba(109, 40, 217, 0.25);
+    box-shadow: 0 2px 8px rgba(60, 36, 25, 0.25);
   }
   .composer button[type="submit"]:hover:not(:disabled) {
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(109, 40, 217, 0.35);
+    background: #4a2f23;
+    box-shadow: 0 4px 12px rgba(60, 36, 25, 0.35);
   }
   .composer button[type="submit"]:active:not(:disabled) {
     transform: translateY(0);
@@ -429,7 +475,6 @@
     color: var(--muted);
     padding: 8px 12px 12px;
     background: var(--surface);
-    opacity: 0.8;
   }
   .watermark strong {
     color: var(--brand);
@@ -441,6 +486,6 @@
     color: var(--muted);
   }
   .counter.over {
-    color: #b91c1c;
+    color: #9a3b2f;
   }
 </style>
