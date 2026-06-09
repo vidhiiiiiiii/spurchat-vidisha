@@ -103,6 +103,13 @@
       <div class="empty-state">
         <p>👋 Hi! I'm Vibha, your support agent.</p>
         <p>Ask me about shipping, returns, support hours, or anything else about your order.</p>
+        <div class="chips">
+          {#each ["What's your return policy?", "Do you ship to USA?", "What are your support hours?", "What payment methods do you accept?"] as chip}
+            <button type="button" class="chip" disabled={sending} on:click={() => { draft = chip; handleSend(); }}>
+              {chip}
+            </button>
+          {/each}
+        </div>
       </div>
     {/if}
 
@@ -219,6 +226,28 @@
   }
   .empty-state p {
     margin: 4px 0;
+  }
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 16px;
+  }
+  .chip {
+    background: none;
+    border: 1px solid var(--brand);
+    color: var(--brand);
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    font-family: inherit;
+  }
+  .chip:hover {
+    background: var(--brand);
+    color: white;
   }
 
   .message-row {
