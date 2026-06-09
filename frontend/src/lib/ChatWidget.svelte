@@ -135,7 +135,6 @@
             </button>
           {/each}
         </div>
-        <p class="free-tier-note">ℹ️ Running on a free LLM tier — replies may occasionally be slow or briefly rate-limited.</p>
       </div>
     {/if}
 
@@ -164,6 +163,8 @@
       <button type="button" on:click={() => (errorBanner = null)} aria-label="Dismiss error">×</button>
     </div>
   {/if}
+
+  <p class="free-tier-note">ℹ️ Running on a free LLM tier — replies may occasionally be slow or briefly rate-limited.</p>
 
   <form class="composer" on:submit|preventDefault={handleSend}>
     <textarea
