@@ -311,11 +311,14 @@
     cursor: not-allowed;
   }
   .free-tier-note {
-    margin: 8px 0 0;
-    padding-left: 42px;
-    font-size: 0.95rem;
+    margin: 0;
+    padding: 5px 14px 5px;
+    font-size: 0.88rem;
     line-height: 1.4;
     color: var(--muted);
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    font-family: inherit;
   }
 
   .message-row {
