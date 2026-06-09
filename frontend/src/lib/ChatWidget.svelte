@@ -91,7 +91,7 @@
   <header class="chat-header">
     <div class="avatar" aria-hidden="true">A</div>
     <div>
-      <h1>Aria · Support</h1>
+      <h1>Vibha · Support</h1>
       <p class="status">{sending ? "Agent is typing…" : "Usually replies in a few seconds"}</p>
     </div>
   </header>
@@ -101,7 +101,7 @@
       <p class="hint">Loading conversation…</p>
     {:else if messages.length === 0}
       <div class="empty-state">
-        <p>👋 Hi! I'm Aria, your support agent.</p>
+        <p>👋 Hi! I'm Vibha, your support agent.</p>
         <p>Ask me about shipping, returns, support hours, or anything else about your order.</p>
       </div>
     {/if}
@@ -145,6 +145,9 @@
       {sending ? "Sending…" : "Send"}
     </button>
   </form>
+  <div class="watermark">
+    ✨ Designed & Developed by <strong>Vidisha</strong>
+  </div>
 </div>
 
 <style>
@@ -154,19 +157,20 @@
     width: min(420px, 100vw);
     height: min(640px, 100vh);
     background: var(--surface);
-    border-radius: 16px;
-    box-shadow: 0 12px 40px rgba(15, 23, 42, 0.18);
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(109, 40, 217, 0.15), 0 0 0 1px rgba(109, 40, 217, 0.05);
     overflow: hidden;
-    border: 1px solid var(--border);
   }
 
   .chat-header {
     display: flex;
     align-items: center;
     gap: 12px;
-    padding: 16px 18px;
-    background: var(--brand);
+    padding: 18px 20px;
+    background: linear-gradient(135deg, #6d28d9 0%, #9333ea 100%);
     color: white;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    z-index: 10;
   }
   .chat-header h1 {
     font-size: 1.05rem;
@@ -237,15 +241,17 @@
     word-break: break-word;
   }
   .bubble.user {
-    background: var(--brand);
+    background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
     color: white;
     border-bottom-right-radius: 4px;
+    box-shadow: 0 4px 12px rgba(109, 40, 217, 0.2);
   }
   .bubble.ai {
-    background: var(--surface);
+    background: #ffffff;
     color: var(--text);
-    border: 1px solid var(--border);
+    border: 1px solid #f1f1f4;
     border-bottom-left-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
   }
 
   .bubble.typing {
@@ -317,7 +323,7 @@
     opacity: 0.6;
   }
   .composer button[type="submit"] {
-    background: var(--brand);
+    background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
     color: white;
     border: none;
     border-radius: 12px;
@@ -325,11 +331,33 @@
     font-weight: 600;
     font-size: 0.9rem;
     cursor: pointer;
-    transition: opacity 0.15s ease;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 8px rgba(109, 40, 217, 0.25);
+  }
+  .composer button[type="submit"]:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(109, 40, 217, 0.35);
+  }
+  .composer button[type="submit"]:active:not(:disabled) {
+    transform: translateY(0);
   }
   .composer button[type="submit"]:disabled {
     opacity: 0.5;
     cursor: not-allowed;
+    box-shadow: none;
+  }
+
+  .watermark {
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--muted);
+    padding: 8px 12px 12px;
+    background: var(--surface);
+    opacity: 0.8;
+  }
+  .watermark strong {
+    color: var(--brand);
+    font-weight: 600;
   }
   .counter {
     align-self: center;

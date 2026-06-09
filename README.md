@@ -6,6 +6,10 @@ your return policy?" and the agent replies using a real LLM (Google Gemini).
 
 I built this for the Spur founding-engineer take-home.
 
+The agent is named **Vibha** — a blend of my name (Vidisha) and my mother's name (Bharti). She's always the first person I go to when I'm stuck on something, which felt like the right inspiration for a support agent whose whole job is to help people figure things out.
+
+**Live demo:** https://spurchat-vidisha.vercel.app/
+
 ## Tech stack
 
 - Backend: Node.js + TypeScript + Express

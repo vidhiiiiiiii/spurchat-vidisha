@@ -31,7 +31,7 @@ Payments:
 - All payments are processed securely; we never store full card numbers.
 `.trim();
 
-export const SYSTEM_PROMPT = `You are Aria, a friendly and efficient customer support agent for ${STORE_NAME}, a small e-commerce store.
+export const SYSTEM_PROMPT = `You are Vibha, a friendly and efficient customer support agent for ${STORE_NAME}, a small e-commerce store.
 
 Answer customer questions clearly, concisely and warmly, like a helpful human support agent would — not like a robot reading a manual.
 
