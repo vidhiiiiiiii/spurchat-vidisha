@@ -1,4 +1,4 @@
-# Lumora Home Goods - AI Live Chat Support
+# Mitti & More - AI Live Chat Support
 
 A small web app with a live chat widget where an AI agent ("Aria") answers
 customer questions for a fictional online store. You type a question like "what's

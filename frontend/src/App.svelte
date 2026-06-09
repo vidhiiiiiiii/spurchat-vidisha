@@ -4,8 +4,8 @@
 
 <main>
   <div class="page-copy">
-    <h1>Lumora Home Goods</h1>
-    <p>Need help with an order, shipping, or returns? Chat with Aria, our AI support agent — available right here, right now.</p>
+    <h1>Mitti & More</h1>
+    <p>Need help with an order, shipping, or returns? Chat with Vibha, our AI support agent — available right here, right now.</p>
   </div>
   <ChatWidget />
 </main>
