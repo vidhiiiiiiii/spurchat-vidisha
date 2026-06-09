@@ -49,6 +49,20 @@
     localStorage.setItem(SESSION_STORAGE_KEY, id);
   }
 
+  /**
+   * Starts a fresh conversation: clears the local thread and forgets the saved
+   * session so the next message creates a new conversation on the backend.
+   * The old conversation stays persisted in the DB — we just stop pointing at it.
+   */
+  function startNewChat() {
+    if (sending) return;
+    messages = [];
+    sessionId = null;
+    errorBanner = null;
+    draft = "";
+    localStorage.removeItem(SESSION_STORAGE_KEY);
+  }
+
   async function handleSend() {
     const text = draft.trim();
     if (!text || sending) return;
@@ -89,11 +103,20 @@
 
 <div class="chat-widget">
   <header class="chat-header">
-    <div class="avatar" aria-hidden="true">A</div>
-    <div>
+    <div class="avatar" aria-hidden="true">V</div>
+    <div class="header-text">
       <h1>Vibha · Support</h1>
       <p class="status">{sending ? "Agent is typing…" : "Usually replies in a few seconds"}</p>
     </div>
+    <button
+      type="button"
+      class="new-chat"
+      on:click={startNewChat}
+      disabled={sending || messages.length === 0}
+      title="Start a new conversation"
+    >
+      New chat
+    </button>
   </header>
 
   <div class="messages" bind:this={scrollEl}>
@@ -179,10 +202,34 @@
     box-shadow: 0 4px 15px rgba(0,0,0,0.05);
     z-index: 10;
   }
+  .header-text {
+    flex: 1;
+    min-width: 0;
+  }
   .chat-header h1 {
     font-size: 1.05rem;
     margin: 0;
     font-weight: 600;
+  }
+  .new-chat {
+    flex-shrink: 0;
+    background: rgba(255, 255, 255, 0.18);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s ease;
+    font-family: inherit;
+  }
+  .new-chat:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.3);
+  }
+  .new-chat:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
   }
   .chat-header .status {
     margin: 2px 0 0;
