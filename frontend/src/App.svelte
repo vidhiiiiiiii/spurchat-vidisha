@@ -12,7 +12,6 @@
     <p>Need help with an order, shipping, or returns? Chat with Vibha, our AI support agent — available right here, right now.</p>
     <div class="tag-row">
       <span class="tag">🌿 Handcrafted goods</span>
-      <span class="tag">🚚 Pan-India shipping</span>
       <span class="tag">↩️ Easy returns</span>
     </div>
   </div>
